@@ -6,7 +6,7 @@
 /*   By: elleneklund <elleneklund@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/16 10:32:55 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/02/16 15:08:12 by elleneklund   ########   odam.nl         */
+/*   Updated: 2025/02/16 16:11:30 by elleneklund   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define FIXED_HPP
 
 #include <iostream>
+#include <cmath>
+
 /*
 Relative Difference= 
 ∣a−b∣ / max(∣a∣,∣b∣)
@@ -25,19 +27,26 @@ By multiplying by
 
 class Fixed {
 
-	private:
+private:
+
 	static const int	_fractionalBits = 8;
 	int					_fixedPoint;
-	float				representation;
 
-	public:
+public:
+
 	Fixed();
-	Fixed(const Fixed& oldObj);
 	~Fixed();
+	Fixed( const int integerValue );
+	Fixed( const float floatValue );
+	Fixed( const Fixed& oldObj );
+
 	Fixed& operator=(const Fixed& F);
-	void	setRawBits( int const raw );
-	int 	getRawBits( void ) const;
-	float	getFloat( void ) const;
+
+	float	toFloat( void ) const;
+	int		toInt( void ) const;
+
 };
+
+std::ostream& operator<<(std::ostream& os, const Fixed& F);
 
 #endif

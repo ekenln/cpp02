@@ -6,14 +6,24 @@
 /*   By: elleneklund <elleneklund@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/16 10:35:36 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/02/16 15:14:17 by elleneklund   ########   odam.nl         */
+/*   Updated: 2025/02/16 17:44:59 by elleneklund   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-Fixed::Fixed() : _fixedPoint(4) {
+
+Fixed::Fixed() : _fixedPoint(0) {
 	std::cout << "Default constructor called" << std::endl;
+}
+
+Fixed::Fixed(int integerValue) : _fixedPoint(integerValue * 256) {
+	std::cout << "int constructor called" << std::endl;
+}
+
+Fixed::Fixed(const float floatValue) {
+	std::cout << "float constructor called" << std::endl;
+	_fixedPoint =  floatValue * 256;
 }
 
 Fixed::~Fixed() {
@@ -36,18 +46,14 @@ Fixed& Fixed::operator=(const Fixed& F)
 	return (*this);
 }
 
-void Fixed::setRawBits( int const raw )
+std::ostream& operator<<(std::ostream& os, const Fixed& F)
 {
-	this->_fixedPoint = raw;
+	// std::cout << "output stream assignment operator called" << std::endl;
+	os << F.toFloat(); 
+	return (os);
 }
 
-int	Fixed::getRawBits( void ) const
-{
-	std::cout << "getRawBits function called" << std::endl;
-	return (_fixedPoint);
-}
-
-float	Fixed::getFloat( void ) const
+float	Fixed::toFloat( void ) const
 {
 	float	rational;
 
@@ -55,3 +61,7 @@ float	Fixed::getFloat( void ) const
 	return (rational);
 }
 
+int Fixed::toInt( void ) const
+{
+	return (_fixedPoint / 256);
+}
