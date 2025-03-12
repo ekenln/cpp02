@@ -6,7 +6,7 @@
 /*   By: elleneklund <elleneklund@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/16 17:49:53 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/02/16 20:59:02 by elleneklund   ########   odam.nl         */
+/*   Updated: 2025/03/12 10:52:45 by elleneklund   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Fixed::Fixed(int integerValue) : _fixedPoint(integerValue * 256) {
 
 Fixed::Fixed(const float floatValue) {
 	// std::cout << "float constructor called" << std::endl;
-	_fixedPoint =  roundf(floatValue * 256.0f);
+	_fixedPoint =  roundf(floatValue * pow(2.0f, _fractionalBits));
 }
 
 Fixed::~Fixed() {}

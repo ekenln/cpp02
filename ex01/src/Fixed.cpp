@@ -6,7 +6,7 @@
 /*   By: elleneklund <elleneklund@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/16 10:35:36 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/02/16 20:56:28 by elleneklund   ########   odam.nl         */
+/*   Updated: 2025/03/12 10:50:38 by elleneklund   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ float	Fixed::toFloat( void ) const
 {
 	float	rational;
 
-	rational = _fixedPoint / 256.0f;
+	rational = _fixedPoint / pow(2.0f ,_fractionalBits);
 	return (rational);
 }
 
 int Fixed::toInt( void ) const
 {
-	return (_fixedPoint / 256);
+	return (_fixedPoint / pow(2 ,_fractionalBits)); //maybe just 256 instead of calc? 
 }

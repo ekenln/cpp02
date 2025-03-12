@@ -6,7 +6,7 @@
 /*   By: elleneklund <elleneklund@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/16 17:52:21 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/02/16 21:10:05 by elleneklund   ########   odam.nl         */
+/*   Updated: 2025/03/12 10:54:59 by elleneklund   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class Fixed {
 
 private:
 	int	_fixedPoint;
-	int	_fractionalBits;
+	int	_fractionalBits = 8;
 
 public:
 	Fixed();
@@ -49,9 +49,9 @@ public:
 	Fixed&	operator--();
 	Fixed	operator--(int);
 
-	Fixed&				min(Fixed& a, Fixed& b);
-	const Fixed&		min(const Fixed& a, const Fixed& b);
-	Fixed&				max(Fixed& a, Fixed&b);
+	static Fixed&				min(Fixed& a, Fixed& b);
+	static const Fixed&		min(const Fixed& a, const Fixed& b);
+	static Fixed&				max(Fixed& a, Fixed&b);
 	static const Fixed&	max(const Fixed& a, const Fixed& b);
 
 	int		getFixedPoint( void ) const;

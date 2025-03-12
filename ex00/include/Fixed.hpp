@@ -6,7 +6,7 @@
 /*   By: elleneklund <elleneklund@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/16 10:32:55 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/02/16 15:08:12 by elleneklund   ########   odam.nl         */
+/*   Updated: 2025/03/12 10:43:11 by elleneklund   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define FIXED_HPP
 
 #include <iostream>
+#include <cmath>
 /*
 Relative Difference= 
 ∣a−b∣ / max(∣a∣,∣b∣)
@@ -28,7 +29,7 @@ class Fixed {
 	private:
 	static const int	_fractionalBits = 8;
 	int					_fixedPoint;
-	float				representation;
+	// float				representation;
 
 	public:
 	Fixed();
