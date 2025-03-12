@@ -6,7 +6,7 @@
 /*   By: elleneklund <elleneklund@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/16 17:49:53 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/03/12 10:52:45 by elleneklund   ########   odam.nl         */
+/*   Updated: 2025/03/12 14:22:09 by elleneklund   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@ Fixed::Fixed() : _fixedPoint(0) {
 	// std::cout << "default constructor called" << std::endl;
 }
 
-Fixed::Fixed(int integerValue) : _fixedPoint(integerValue * 256) {
+Fixed::Fixed(int integerValue) : _fixedPoint(integerValue << _fractionalBits) {
 	// std::cout << "int constructor called" << std::endl;
 }
 
 Fixed::Fixed(const float floatValue) {
 	// std::cout << "float constructor called" << std::endl;
-	_fixedPoint =  roundf(floatValue * pow(2.0f, _fractionalBits));
+	_fixedPoint = roundf(floatValue * (1 << _fractionalBits));
+	// _fixedPoint =  roundf(floatValue * pow(2.0f, _fractionalBits));
 }
 
 Fixed::~Fixed() {}
@@ -84,14 +85,14 @@ Fixed	Fixed::operator-(const Fixed& F) const {
 Fixed	Fixed::operator*(const Fixed& F) const {
 	Fixed	result;
 
-	result._fixedPoint = (this->_fixedPoint * F._fixedPoint) / 256;
+	result._fixedPoint = (this->_fixedPoint * F._fixedPoint) >> _fractionalBits;
 	return (result);
 }
 
 Fixed	Fixed::operator/(const Fixed& F) const {
 	Fixed	result;
 
-	result._fixedPoint = (this->_fixedPoint * 256) / F._fixedPoint;
+	result._fixedPoint = (this->_fixedPoint << _fractionalBits) / F._fixedPoint;
 	return (result);
 }
 
@@ -149,10 +150,23 @@ const Fixed&	Fixed::max(const Fixed& a, const Fixed& b) {
 		return (b);
 }
 
+// float	Fixed::toFloat( void ) const
+// {
+// 	float	rational;
+
+// 	rational = _fixedPoint / 256.0f;
+// 	return (rational);
+// }
+
 float	Fixed::toFloat( void ) const
 {
+	int		integer;
+	float	fractional;
 	float	rational;
 
-	rational = _fixedPoint / 256.0f;
+	// rational = _fixedPoint / pow(2.0f ,_fractionalBits);
+	integer = _fixedPoint >> _fractionalBits;
+	fractional = (_fixedPoint & ((1 << _fractionalBits) - 1)) * (1.0f / (1 << _fractionalBits));
+	rational = integer + fractional;
 	return (rational);
 }
