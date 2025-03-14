@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   Fixed.hpp                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: elleneklund <elleneklund@student.codam.      +#+                     */
+/*   By: eeklund <eeklund@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/16 17:52:21 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/03/12 10:53:46 by elleneklund   ########   odam.nl         */
+/*   Updated: 2025/03/14 15:44:31 by eeklund       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@
 class Fixed {
 
 private:
+
 	int					_fixedPoint;
 	static const int	_fractionalBits = 8;
 
 public:
+
 	Fixed();
 	Fixed( const int integerValue );
 	Fixed( const float floatValue );
@@ -56,7 +58,7 @@ public:
 
 	int		getFixedPoint( void ) const;
 	float	toFloat( void ) const;
-
+	int		toInt( void ) const;
 };
 
 std::ostream&	operator<<(std::ostream& stream, const Fixed& F);

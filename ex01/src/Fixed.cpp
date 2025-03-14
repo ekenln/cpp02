@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   Fixed.cpp                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: elleneklund <elleneklund@student.codam.      +#+                     */
+/*   By: eeklund <eeklund@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/16 10:35:36 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/03/12 14:09:53 by elleneklund   ########   odam.nl         */
+/*   Updated: 2025/03/14 15:40:04 by eeklund       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ std::ostream& operator<<(std::ostream& os, const Fixed& F)
 
 float	Fixed::toFloat( void ) const
 {
-	int		integer;
-	float	fractional;
+	// int		integer;
+	// float	fractional;
 	float	rational;
 
-	// rational = _fixedPoint / pow(2.0f ,_fractionalBits);
-	integer = toInt();
-	fractional = (_fixedPoint & ((1 << _fractionalBits) - 1)) * (1.0f / (1 << _fractionalBits));
-	rational = integer + fractional;
+	// integer = toInt();
+	// fractional = (_fixedPoint & ((1 << _fractionalBits) - 1)) * (1.0f / (1 << _fractionalBits));
+	// rational = integer + fractional;
+	rational = (float)_fixedPoint / (1 << _fractionalBits);
 	return (rational);
 }
 
@@ -71,5 +71,4 @@ int Fixed::toInt( void ) const
 
 	result = _fixedPoint >> _fractionalBits;
 	return (result);
-	// return (_fixedPoint / pow(2 ,_fractionalBits)); //maybe just 256 instead of pow, not sure is allowed? 
 }
