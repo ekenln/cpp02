@@ -6,7 +6,7 @@
 /*   By: eeklund <eeklund@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/16 17:52:21 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/03/14 15:44:31 by eeklund       ########   odam.nl         */
+/*   Updated: 2025/03/19 13:42:21 by eeklund       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ public:
 	Fixed(const Fixed& F); //copy constructor
 	
 	//overloading relational operators
+	Fixed& operator=(const Fixed& F);
 	bool	operator>(const Fixed& F) const;
 	bool	operator<(const Fixed& F) const;
 	bool	operator>=(const Fixed& F) const;
@@ -56,6 +57,8 @@ public:
 	static Fixed&		max(Fixed& a, Fixed&b);
 	static const Fixed&	max(const Fixed& a, const Fixed& b);
 
+	void	setRawBits( int const raw );
+	int 	getRawBits( void ) const;
 	int		getFixedPoint( void ) const;
 	float	toFloat( void ) const;
 	int		toInt( void ) const;

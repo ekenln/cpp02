@@ -6,11 +6,11 @@
 /*   By: eeklund <eeklund@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/16 17:49:53 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/03/14 15:43:50 by eeklund       ########   odam.nl         */
+/*   Updated: 2025/03/19 13:44:59 by eeklund       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#include "../include/Fixed.hpp"
 
 Fixed::Fixed() : _fixedPoint(0) {
 	// std::cout << "default constructor called" << std::endl;
@@ -23,20 +23,28 @@ Fixed::Fixed(int integerValue) : _fixedPoint(integerValue << _fractionalBits) {
 Fixed::Fixed(const float floatValue) {
 	// std::cout << "float constructor called" << std::endl;
 	_fixedPoint = roundf(floatValue * (1 << _fractionalBits));
-	// _fixedPoint =  roundf(floatValue * pow(2.0f, _fractionalBits));
 }
 
 Fixed::~Fixed() {}
 
 Fixed::Fixed(const Fixed& F) : _fixedPoint(F._fixedPoint) {
-	std::cout << "copy constructor called" << std::endl;
+	// std::cout << "copy constructor called" << std::endl;
+}
+
+Fixed& Fixed::operator=(const Fixed& F)
+{
+	// std::cout << "Copy assignment operator called" << std::endl;
+	if (this != &F)
+	{
+		this->_fixedPoint = F.getRawBits(); // why not just F._fixedPoint?
+	}
+	return (*this);
 }
 
 int		Fixed::getFixedPoint( void ) const
 {
 	return (_fixedPoint);
 }
-
 
 std::ostream&	operator<<(std::ostream& stream, const Fixed& F) {
 	stream << F.toFloat();
@@ -148,6 +156,17 @@ const Fixed&	Fixed::max(const Fixed& a, const Fixed& b) {
 		return (a);
 	else
 		return (b);
+}
+
+void Fixed::setRawBits( int const raw )
+{
+	this->_fixedPoint = raw;
+}
+
+int	Fixed::getRawBits( void ) const
+{
+	// std::cout << "getRawBits function called" << std::endl;
+	return (_fixedPoint);
 }
 
 int Fixed::toInt( void ) const

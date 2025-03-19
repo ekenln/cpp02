@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   Fixed.hpp                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: elleneklund <elleneklund@student.codam.      +#+                     */
+/*   By: eeklund <eeklund@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/16 10:32:55 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/02/16 16:11:30 by elleneklund   ########   odam.nl         */
+/*   Updated: 2025/03/19 13:34:29 by eeklund       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,17 @@ private:
 public:
 
 	Fixed();
+	Fixed(const int integerValue);
+	Fixed(const float floatValue);
 	~Fixed();
-	Fixed( const int integerValue );
-	Fixed( const float floatValue );
 	Fixed( const Fixed& oldObj );
 
 	Fixed& operator=(const Fixed& F);
 
 	float	toFloat( void ) const;
 	int		toInt( void ) const;
-
+	void	setRawBits( int const raw );
+	int 	getRawBits( void ) const;
 };
 
 std::ostream& operator<<(std::ostream& os, const Fixed& F);

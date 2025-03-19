@@ -3,16 +3,14 @@
 /*                                                        ::::::::            */
 /*   main.cpp                                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: elleneklund <elleneklund@student.codam.      +#+                     */
+/*   By: eeklund <eeklund@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/15 13:43:01 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/02/16 15:34:48 by elleneklund   ########   odam.nl         */
+/*   Updated: 2025/03/19 13:23:24 by eeklund       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-
-#include "Fixed.hpp"
+#include "../include/Fixed.hpp"
 
 int main( void ) 
 {
@@ -22,9 +20,9 @@ int main( void )
 
 	c = b;
 
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
+	std::cout << "a: " << a.getRawBits() << std::endl;
+	std::cout << "b: " << b.getRawBits() << std::endl;
+	std::cout << "c: " << c.getRawBits() << std::endl;
 	std::cout << "as rational number " << a.getFloat() << std::endl;
 
 	return (0);

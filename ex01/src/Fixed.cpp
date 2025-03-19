@@ -6,7 +6,7 @@
 /*   By: eeklund <eeklund@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/16 10:35:36 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/03/14 15:40:04 by eeklund       ########   odam.nl         */
+/*   Updated: 2025/03/19 13:38:31 by eeklund       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ Fixed::Fixed() : _fixedPoint(0) {
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(int integerValue) : _fixedPoint(integerValue * 256) {
+Fixed::Fixed(const int integerValue) : _fixedPoint(integerValue << _fractionalBits) {
 	std::cout << "int constructor called" << std::endl;
 }
 
 Fixed::Fixed(const float floatValue) {
 	std::cout << "float constructor called" << std::endl;
-	_fixedPoint =  (floatValue * 256.0f);
+	_fixedPoint =  (floatValue * (1 << _fractionalBits));
 }
 
 Fixed::~Fixed() {
@@ -40,7 +40,7 @@ Fixed& Fixed::operator=(const Fixed& F)
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &F)
 	{
-		this->_fixedPoint = F._fixedPoint;
+		this->_fixedPoint = F.getRawBits();
 	}
 	return (*this);
 }
@@ -50,6 +50,17 @@ std::ostream& operator<<(std::ostream& os, const Fixed& F)
 	// std::cout << "output stream assignment operator called" << std::endl;
 	os << F.toFloat(); 
 	return (os);
+}
+
+void Fixed::setRawBits( int const raw )
+{
+	this->_fixedPoint = raw;
+}
+
+int	Fixed::getRawBits( void ) const
+{
+	std::cout << "getRawBits function called" << std::endl;
+	return (_fixedPoint);
 }
 
 float	Fixed::toFloat( void ) const
