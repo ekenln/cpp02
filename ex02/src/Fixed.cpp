@@ -6,7 +6,7 @@
 /*   By: eeklund <eeklund@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/16 17:49:53 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/03/19 13:44:59 by eeklund       ########   odam.nl         */
+/*   Updated: 2025/03/20 12:08:53 by eeklund       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ Fixed::Fixed(const float floatValue) {
 
 Fixed::~Fixed() {}
 
-Fixed::Fixed(const Fixed& F) : _fixedPoint(F._fixedPoint) {
+Fixed::Fixed(const Fixed& F) : _fixedPoint(F.getRawBits()) {
 	// std::cout << "copy constructor called" << std::endl;
 }
 
@@ -36,12 +36,12 @@ Fixed& Fixed::operator=(const Fixed& F)
 	// std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &F)
 	{
-		this->_fixedPoint = F.getRawBits(); // why not just F._fixedPoint?
+		this->_fixedPoint = F.getRawBits();
 	}
 	return (*this);
 }
 
-int		Fixed::getFixedPoint( void ) const
+int	Fixed::getFixedPoint( void ) const
 {
 	return (_fixedPoint);
 }
@@ -179,14 +179,8 @@ int Fixed::toInt( void ) const
 
 float	Fixed::toFloat( void ) const
 {
-	// int		integer;
-	// float	fractional;
 	float	rational;
 
-	// rational = _fixedPoint / pow(2.0f ,_fractionalBits);
-	// integer = _fixedPoint >> _fractionalBits;
-	// fractional = (_fixedPoint & ((1 << _fractionalBits) - 1)) * (1.0f / (1 << _fractionalBits));
-	// rational = integer + fractional;
 	rational = (float)_fixedPoint / (1 << _fractionalBits);
 	return (rational);
 }

@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   Fixed.hpp                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: elleneklund <elleneklund@student.codam.      +#+                     */
+/*   By: eeklund <eeklund@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/16 10:32:55 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/03/12 10:43:11 by elleneklund   ########   odam.nl         */
+/*   Updated: 2025/03/20 11:49:16 by eeklund       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,18 @@ By multiplying by
 class Fixed {
 
 	private:
-	static const int	_fractionalBits = 8;
-	int					_fixedPoint;
-	// float				representation;
+
+		static const int	_fractionalBits = 8;
+		int					_fixedPoint;
 
 	public:
-	Fixed();
-	Fixed(const Fixed& oldObj);
-	~Fixed();
-	Fixed& operator=(const Fixed& F);
-	void	setRawBits( int const raw );
-	int 	getRawBits( void ) const;
-	float	getFloat( void ) const;
+
+		Fixed();
+		Fixed(const Fixed& oldObj);
+		~Fixed();
+		Fixed& operator=(const Fixed& F);
+		void	setRawBits( int const raw );
+		int 	getRawBits( void ) const;
 };
 
 #endif

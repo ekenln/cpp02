@@ -6,7 +6,7 @@
 /*   By: eeklund <eeklund@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/16 17:52:21 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/03/19 13:42:21 by eeklund       ########   odam.nl         */
+/*   Updated: 2025/03/20 11:45:26 by eeklund       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ public:
 	bool	operator==(const Fixed& F) const;
 	bool	operator!=(const Fixed& F) const;
 
-	//arithmetic operators +, -, *, and / should it return reference to fixed? or a new instance like that? UNCLEAR
+	//arithmetic operators +, -, *, and /
 	Fixed	operator+(const Fixed& F) const;
 	Fixed	operator-(const Fixed& F) const;
 	Fixed	operator*(const Fixed& F) const;

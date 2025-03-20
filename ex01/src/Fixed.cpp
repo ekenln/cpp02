@@ -6,7 +6,7 @@
 /*   By: eeklund <eeklund@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/16 10:35:36 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/03/19 13:38:31 by eeklund       ########   odam.nl         */
+/*   Updated: 2025/03/20 12:06:21 by eeklund       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@ Fixed::Fixed() : _fixedPoint(0) {
 }
 
 Fixed::Fixed(const int integerValue) : _fixedPoint(integerValue << _fractionalBits) {
-	std::cout << "int constructor called" << std::endl;
+	std::cout << "Int constructor called" << std::endl;
 }
 
 Fixed::Fixed(const float floatValue) {
-	std::cout << "float constructor called" << std::endl;
-	_fixedPoint =  (floatValue * (1 << _fractionalBits));
+	std::cout << "Float constructor called" << std::endl;
+	_fixedPoint =  roundf((floatValue * (1 << _fractionalBits)));
 }
 
 Fixed::~Fixed() {
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& F) : _fixedPoint(F._fixedPoint)
+Fixed::Fixed(const Fixed& F)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	// _fixedPoint = F._fixedPoint;
+	*this = F;
 }
 
 Fixed& Fixed::operator=(const Fixed& F)
@@ -47,7 +47,6 @@ Fixed& Fixed::operator=(const Fixed& F)
 
 std::ostream& operator<<(std::ostream& os, const Fixed& F)
 {
-	// std::cout << "output stream assignment operator called" << std::endl;
 	os << F.toFloat(); 
 	return (os);
 }
@@ -65,13 +64,8 @@ int	Fixed::getRawBits( void ) const
 
 float	Fixed::toFloat( void ) const
 {
-	// int		integer;
-	// float	fractional;
 	float	rational;
 
-	// integer = toInt();
-	// fractional = (_fixedPoint & ((1 << _fractionalBits) - 1)) * (1.0f / (1 << _fractionalBits));
-	// rational = integer + fractional;
 	rational = (float)_fixedPoint / (1 << _fractionalBits);
 	return (rational);
 }

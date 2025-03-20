@@ -3,22 +3,21 @@
 /*                                                        ::::::::            */
 /*   main.cpp                                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: elleneklund <elleneklund@student.codam.      +#+                     */
+/*   By: eeklund <eeklund@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/15 13:43:01 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/02/16 17:44:50 by elleneklund   ########   odam.nl         */
+/*   Updated: 2025/03/20 12:06:28 by eeklund       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "Fixed.hpp"
 
 int main( void ) 
 {
-	Fixed a;
-	Fixed const b( 10 );
-	Fixed const c( 42.42f );
-	Fixed const d( b );
+	Fixed		a;
+	Fixed const	b( 10 );
+	Fixed const	c( 42.42f );
+	Fixed const	d( b );
 
 	a = Fixed( 1234.4321f );
 

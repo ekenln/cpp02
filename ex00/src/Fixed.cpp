@@ -6,7 +6,7 @@
 /*   By: eeklund <eeklund@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/16 10:35:36 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/03/19 13:27:28 by eeklund       ########   odam.nl         */
+/*   Updated: 2025/03/20 11:55:39 by eeklund       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Fixed::~Fixed() {
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& F) : _fixedPoint(F._fixedPoint)
+Fixed::Fixed(const Fixed& F) : _fixedPoint(F.getRawBits())
 {
 	std::cout << "Copy constructor called" << std::endl;
 }
@@ -30,7 +30,7 @@ Fixed& Fixed::operator=(const Fixed& F)
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &F)
 	{
-		this->_fixedPoint = F.getRawBits(); // why not just F._fixedPoint?
+		this->_fixedPoint = F.getRawBits();
 	}
 	return (*this);
 }
@@ -42,15 +42,6 @@ void Fixed::setRawBits( int const raw )
 
 int	Fixed::getRawBits( void ) const
 {
-	std::cout << "getRawBits function called" << std::endl;
+	std::cout << "getRawBits member function called" << std::endl;
 	return (_fixedPoint);
 }
-
-float	Fixed::getFloat( void ) const
-{
-	float	rational;
-
-	rational = (float)_fixedPoint / (1 << _fractionalBits);
-	return (rational);
-}
-

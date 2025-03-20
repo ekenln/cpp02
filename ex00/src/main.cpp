@@ -6,7 +6,7 @@
 /*   By: eeklund <eeklund@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/15 13:43:01 by elleneklund   #+#    #+#                 */
-/*   Updated: 2025/03/19 13:23:24 by eeklund       ########   odam.nl         */
+/*   Updated: 2025/03/20 11:49:14 by eeklund       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int main( void )
 	std::cout << "a: " << a.getRawBits() << std::endl;
 	std::cout << "b: " << b.getRawBits() << std::endl;
 	std::cout << "c: " << c.getRawBits() << std::endl;
-	std::cout << "as rational number " << a.getFloat() << std::endl;
 
 	return (0);
 }
